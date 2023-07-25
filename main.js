@@ -7,6 +7,9 @@ function promisifiedCalc() {
     return new Promise((resolve, reject) => {
       let i, x = 100.32462344, y = 200.333456533452;
       for (i = 0; i < 10000000; i++) {
+        for (let j = 0; j < 50; j++) {
+          x += y;
+        }
         x += y;
       }
   
@@ -17,13 +20,15 @@ function promisifiedCalc() {
   
   // Function that returns a promise for calc2()
   function promisifiedCalc2() {
+
     return new Promise((resolve, reject) => {
-      let i, x = 100.32462344, y = 200.333456533452;
-      for (i = 0; i < 10000000; i++) {
-        x += y;
+      let total = 0;
+      for (let i = 0; i < 10000000; i++) {
+        for (let j = 0; j < 50; j++) {
+          total += j;
+        }
+        total += i;
       }
-  
-      const total = x;
       resolve(total);
     });
   }
@@ -59,6 +64,9 @@ Promise.all([promisifiedCalc(), promisifiedCalc2(), promisifiedCalc3()])
   function calc1() {
       let x = 100.32462344, y = 200.333456533452;
       for (let i = 0; i < 10000000; i++) {
+        for (let j = 0; j < 50; j++) {
+          x += y;
+        }
           x += y;
       }
       return x;
@@ -68,7 +76,10 @@ Promise.all([promisifiedCalc(), promisifiedCalc2(), promisifiedCalc3()])
   function calc2() {
       let result = 0;
       for (let i = 0; i < 10000000; i++) {
-          result += i;
+        for (let j = 0; j < 50; j++) {
+          result += j;
+        }
+        result += i;
       }
       return result;
   }
